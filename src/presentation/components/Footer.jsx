@@ -3,7 +3,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-[var(--color-primary)] text-text py-10 mt-20">
+    <footer className=" bg-gradient-to-t from-[var(--color-highlight)] to-bg-white text-text py-10 mt-20">
       <div className="container mx-auto px-6 text-center">
         <h2 className="text-2xl font-serif font-bold mb-4">Wedify</h2>
         <p className="mb-4 text-text/80">

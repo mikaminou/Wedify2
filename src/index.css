@@ -13,19 +13,23 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* Color Palette (Wedding Theme) */
-  --color-primary: #FBCFE8;     /* soft pink */
-  --color-secondary: #cfbee2;   /* lavender */
-  --color-accent: #ade3c7;      /* mint green */
-  --color-highlight: #ffee93;   /* pastel yellow */
-  --color-background: #FFF7F9;  /* very light pink background */
-  --color-text: #1e242e;        /* elegant gray for text */
-  --color-subtext: #535964;     /* softer gray for descriptions */
+  /* 🎨 Color Palette (Elegant Wedding Theme) */
+--color-primary: #d6aac1;   /* Lilac Mist */
+--color-secondary: #BFD8C2; /* Sage Green */
+--color-accent: #F2B5A7;    /* Coral Rose */
+--color-highlight: #FFF7EB; /* Warm Ivory */
+--color-background: #FFFCFA;/* Soft Cream */
+--color-text: #1F2933;      /* Modern Gray-Black */
+--color-subtext: #5F6C7B;   /* Muted Blue-Gray */
 
-  /* Buttons */
-  --color-button-bg: #F472B6;   /* vibrant romantic pink */
-  --color-button-text: #ffffff;
-  --color-button-hover: #EC4899; /* hot pink on hover */
+/* Buttons */
+--color-button-bg: #d6aac1;   /* Coral Rose */
+--color-button-text: #ffffff;
+--color-button-hover: #bb6a94;/* Deeper Coral */
+
+
+
+
 
   /* Shadows */
   --shadow-soft: 0 4px 12px rgba(0,0,0,0.05);

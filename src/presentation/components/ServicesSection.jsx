@@ -1,58 +1,31 @@
-import React from 'react';
+// src/presentation/components/ServicesSection.jsx
+import React from "react";
+
+const services = [
+  { title: "Venues", text: "Discover stunning venues in your region tailored to your style and budget." },
+  { title: "Photography", text: "Capture every precious moment with our professional photographers who specialize in weddings." },
+  { title: "Beauty", text: "Professional makeup and hairstyling to help you shine with confidence and elegance." },
+  { title: "Clothing", text: "From stunning white and traditional dresses to elegant suits, tailored to your special day." },
+  { title: "Catering", text: "Delight your guests with curated menus from top chefs, customized for your celebration." },
+  { title: "DJ & Music", text: "Professional DJs and live music to keep your celebration unforgettable." }
+];
 
 const ServicesSection = () => {
-    return (
-        <section className="container bg-[var(--color-background)] mx-auto px-6 min-h-screen flex flex-col items-center justify-center">
-                <h2 className="text-4xl font-bold text-center text-pink-900 mb-12">
-                Our Services
-                </h2>
-                <div className="grid md:grid-cols-3 gap-10 mt-30">
-                    <div className="bg-white rounded-2xl shadow-xl p-8 text-center hover:scale-105 transition-transform">
-                        <h3 className="text-2xl font-semibold mb-4">Venues</h3>
-                        <p>
-                            Discover stunning venues in your region tailored to your style and budget.
-                        </p>
-                    </div>
-
-                    <div className="bg-white rounded-2xl shadow-xl p-8 text-center hover:scale-105 transition-transform">
-                        <h3 className="text-2xl font-semibold mb-4">Photography</h3>
-                        <p>
-                            Capture every precious moment with our professional photographers who specialize in weddings.
-                        </p>
-                    </div>
-
-                    <div className="bg-white rounded-2xl shadow-xl p-8 text-center hover:scale-105 transition-transform">
-                        <h3 className="text-2xl font-semibold mb-4">Beauty</h3>
-                        <p>
-                            Professional makeup and hairstyling to help you shine with confidence and elegance.
-                        </p>
-                    </div>
-
-                    <div className="bg-white rounded-2xl shadow-xl p-8 text-center hover:scale-105 transition-transform">
-                        <h3 className="text-2xl font-semibold mb-4">Clothing</h3>
-                        <p>
-                            From stunning white and and traditional dresses to elegant suits, tailored to your special day.
-                        </p>
-                    </div>
-
-                    <div className="bg-white rounded-2xl shadow-xl p-8 text-center hover:scale-105 transition-transform">
-                        <h3 className="text-2xl font-semibold mb-4">Catering</h3>
-                        <p>
-                            Delight your guests with curated menus from top chefs, customized for your celebration.
-                        </p>
-                    </div>
-
-                    <div className="bg-white rounded-2xl shadow-xl p-8 text-center hover:scale-105 transition-transform">
-                        <h3 className="text-2xl font-semibold mb-4">DJ & Music</h3>
-                        <p>
-                            Professional DJs and live music to keep your celebration unforgettable.
-                        </p>
-                    </div>
-
-                    
-                </div>
-        </section>
-    );
+  return (
+    <section className="container mx-auto px-6 py-20 bg-[var(--color-background)] flex flex-col items-center">
+      <h2 className="text-4xl font-bold text-center text-[var(--color-primary)] mb-12">
+        Our Services
+      </h2>
+      <div className="grid md:grid-cols-3 gap-10">
+        {services.map((service, idx) => (
+          <div key={idx} className="bg-white rounded-2xl shadow-xl p-8 text-center hover:scale-105 transition-transform duration-300">
+            <h3 className="text-2xl font-semibold mb-4">{service.title}</h3>
+            <p>{service.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
 };
 
 export default ServicesSection;
