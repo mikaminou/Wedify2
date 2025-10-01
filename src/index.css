@@ -13,17 +13,17 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* 🎨 Color Palette (Elegant Wedding Theme) */
---color-primary: #d6aac1;   /* Lilac Mist */
+  /* 🎨 Color Palette #d6aac1 (Elegant Wedding Theme) */
+--color-primary: #d6b9aa;   /* Lilac Mist */
 --color-secondary: #BFD8C2; /* Sage Green */
---color-accent: #F2B5A7;    /* Coral Rose */
+--color-accent: #e8d4cc;    /* Coral Rose */
 --color-highlight: #FFF7EB; /* Warm Ivory */
---color-background: #FFFCFA;/* Soft Cream */
+--color-background: #fffeff;/* Soft Cream */
 --color-text: #1F2933;      /* Modern Gray-Black */
 --color-subtext: #5F6C7B;   /* Muted Blue-Gray */
 
 /* Buttons */
---color-button-bg: #d6aac1;   /* Coral Rose */
+--color-button-bg: #d6b9aa;   /* Coral Rose */
 --color-button-text: #ffffff;
 --color-button-hover: #bb6a94;/* Deeper Coral */
 

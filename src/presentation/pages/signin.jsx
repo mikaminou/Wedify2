@@ -1,24 +1,14 @@
 import React from "react";
 
-const SignUp = () => {
+const SignIn = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-100 via-white to-purple-100 relative">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-100 via-white to-pink-100 relative">
       {/* Glass Card */}
       <div className="w-full max-w-md bg-white/30 backdrop-blur-xl shadow-xl rounded-2xl p-8 border border-white/40">
         <h2 className="text-3xl font-bold text-center text-[var(--color-text)] mb-6">
-          Create Your Account
+          Welcome Back
         </h2>
         <form className="space-y-6">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Full Name
-            </label>
-            <input
-              type="text"
-              placeholder="Enter your full name"
-              className="w-full px-4 py-2 rounded-lg bg-white/60 backdrop-blur-sm border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
-            />
-          </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Email
@@ -43,13 +33,13 @@ const SignUp = () => {
             type="submit"
             className="w-full py-3 rounded-lg bg-[var(--color-accent)] text-white font-medium hover:bg-[var(--color-accent-dark)] transition shadow-md"
           >
-            Sign Up
+            Sign In
           </button>
         </form>
         <p className="text-center text-gray-600 mt-6">
-          Already have an account?{" "}
-          <a href="/signin" className="text-[var(--color-accent)] font-semibold hover:underline">
-            Sign In
+          Don’t have an account?{" "}
+          <a href="/signup" className="text-[var(--color-accent)] font-semibold hover:underline">
+            Sign Up
           </a>
         </p>
       </div>
@@ -57,4 +47,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignIn;

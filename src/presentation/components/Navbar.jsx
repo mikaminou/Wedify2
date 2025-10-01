@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,10 +27,20 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex justify-between items-center px-6 py-4">
         {/* Logo */}
-        <h1 className="text-2xl font-bold text-[var(--color-text)]">Wedify</h1>
+        <h1
+          className={`text-2xl font-bold transition-colors duration-300 ${
+            scrolled ? "text-[var(--color-text)]" : "!text-white"
+          }`}
+        >
+          Wedify
+        </h1>
 
         {/* Center Links */}
-        <ul className="hidden md:flex gap-8 text-[var(--color-text)] font-medium mx-auto">
+        <ul
+          className={`hidden md:flex gap-8 font-medium mx-auto ${
+            scrolled ? "text-[var(--color-text)]" : "text-white"
+          }`}
+        >
           {navLinks.map((link, idx) => (
             <li
               key={idx}
@@ -42,17 +53,27 @@ const Navbar = () => {
 
         {/* Buttons */}
         <div className="hidden md:flex gap-4 items-center">
-          <button className="text-[var(--color-text)] hover:text-[var(--color-accent)] transition">
+          <Link
+            to="/signin"
+            className={`hover:text-[var(--color-accent)] transition ${
+              scrolled ? "text-[var(--color-text)]" : "text-white"
+            }`}
+          >
             Sign In
-          </button>
-          <button className="px-4 py-2 rounded-lg bg-[var(--color-accent)] text-white font-medium hover:bg-[var(--color-accent-dark)] transition">
+          </Link>
+          <Link
+            to="/signup"
+            className="px-4 py-2 rounded-lg bg-[var(--color-accent)] text-white font-medium hover:bg-[var(--color-accent-dark)] transition"
+          >
             Sign Up
-          </button>
+          </Link>
         </div>
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden text-[var(--color-text)]"
+          className={`md:hidden ${
+            scrolled ? "text-[var(--color-text)]" : "text-white"
+          }`}
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
@@ -73,12 +94,18 @@ const Navbar = () => {
               </li>
             ))}
             <div className="flex flex-col gap-4 mt-4 w-3/4 items-center">
-              <button className="text-[var(--color-text)] hover:text-[var(--color-accent)] transition">
+              <Link
+                to="/signin"
+                className="text-[var(--color-text)] hover:text-[var(--color-accent)] transition"
+              >
                 Sign In
-              </button>
-              <button className="w-full px-4 py-2 rounded-lg bg-[var(--color-accent)] text-white font-medium hover:bg-[var(--color-accent-dark)] transition">
+              </Link>
+              <Link
+                to="/signup"
+                className="w-full px-4 py-2 rounded-lg bg-[var(--color-accent)] text-white font-medium hover:bg-[var(--color-accent-dark)] transition"
+              >
                 Sign Up
-              </button>
+              </Link>
             </div>
           </ul>
         </div>
