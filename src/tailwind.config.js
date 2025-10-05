@@ -33,13 +33,6 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
-      colors: {
-        'accent': '#F4A300',
-        'primary': '#F8D6D0',
-        'secondary': '#F1E1D0',
-        'dark': '#333333',
-        'light': '#F9F9F9',
-      },
       fontFamily: {
         'serif': ['"Playfair Display"', 'serif'],
         'handwriting': ['"Dancing Script"', 'cursive'],

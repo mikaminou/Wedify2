@@ -2,13 +2,13 @@ import React from "react";
 
 const SignIn = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-100 via-white to-pink-100 relative">
+    <div className="min-h-screen flex items-center justify-center bg-gray-300 relative">
       {/* Glass Card */}
       <div className="w-full max-w-md bg-white/30 backdrop-blur-xl shadow-xl rounded-2xl p-8 border border-white/40">
         <h2 className="text-3xl font-bold text-center text-[var(--color-text)] mb-6">
           Welcome Back
         </h2>
-        <form className="space-y-6">
+        <form className="space-y-6 m-6">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Email

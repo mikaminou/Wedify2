@@ -4,11 +4,11 @@ const SignUp = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-100 via-white to-purple-100 relative">
       {/* Glass Card */}
-      <div className="w-full max-w-md bg-white/30 backdrop-blur-xl shadow-xl rounded-2xl p-8 border border-white/40">
+      <div className="w-full max-w-md bg-white/60 backdrop-blur-xl shadow-xl rounded-2xl p-8 border border-white/40">
         <h2 className="text-3xl font-bold text-center text-[var(--color-text)] mb-6">
           Create Your Account
         </h2>
-        <form className="space-y-6">
+        <form className="space-y-6 mt-6">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Full Name
