@@ -18,29 +18,15 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 w-full z-50 transform transition-all duration-500 ${
-        scrolled
-          ? "bg-white/60 backdrop-blur-md shadow-sm opacity-100 translate-y-0"
-          : "bg-transparent opacity-90 -translate-y-1"
-      }`}
-    >
+    <nav className="fixed top-0 left-0 w-full z-10 bg-white/70 backdrop-blur-md shadow-sm">
       <div className="container mx-auto flex justify-between items-center px-6 py-4">
         {/* Logo */}
-        <h1
-          className={`text-2xl font-bold transition-colors duration-300 ${
-            scrolled ? "text-[var(--color-text)]" : "!text-white"
-          }`}
-        >
+        <h1 className="text-2xl font-bold text-[var(--color-text)] transition-colors duration-300">
           Wedify
         </h1>
 
         {/* Center Links */}
-        <ul
-          className={`hidden md:flex gap-8 font-medium mx-auto ${
-            scrolled ? "text-[var(--color-text)]" : "text-white"
-          }`}
-        >
+        <ul className="hidden md:flex gap-8 font-medium mx-auto text-[var(--color-text)]">
           {navLinks.map((link, idx) => (
             <li
               key={idx}
@@ -55,15 +41,13 @@ const Navbar = () => {
         <div className="hidden md:flex gap-4 items-center">
           <Link
             to="/signin"
-            className={`hover:text-[var(--color-accent)] transition ${
-              scrolled ? "text-[var(--color-text)]" : "text-white"
-            }`}
+            className="text-[var(--color-text)] hover:text-[var(--color-accent)] transition"
           >
             Sign In
           </Link>
           <Link
             to="/signup"
-            className="px-4 py-2 rounded-lg bg-[var(--color-accent)] text-white font-medium hover:bg-[var(--color-accent-dark)] transition"
+            className="px-4 py-2 rounded-lg bg-[var(--color-button-bg)] !text-white font-medium hover:bg-[var(--color-accent-dark)] transition"
           >
             Sign Up
           </Link>
@@ -71,9 +55,7 @@ const Navbar = () => {
 
         {/* Mobile menu button */}
         <button
-          className={`md:hidden ${
-            scrolled ? "text-[var(--color-text)]" : "text-white"
-          }`}
+          className="md:hidden text-[var(--color-text)]"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >

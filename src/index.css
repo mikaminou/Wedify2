@@ -13,19 +13,20 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+
   /* 🎨 Color Palette #d6aac1 (Elegant Wedding Theme) */
---color-primary: #d6b9aa;   /* Lilac Mist */
+--color-primary: #d6aaaa;   /* Lilac Mist */
 --color-secondary: #BFD8C2; /* Sage Green */
---color-accent: #e8d4cc;    /* Coral Rose */
+--color-accent: #b27e7b;    /* Coral Rose */
 --color-highlight: #FFF7EB; /* Warm Ivory */
 --color-background: #fffeff;/* Soft Cream */
 --color-text: #1F2933;      /* Modern Gray-Black */
---color-subtext: #5F6C7B;   /* Muted Blue-Gray */
+--color-subtext: #242b33;   /* Muted Blue-Gray */
 
 /* Buttons */
---color-button-bg: #d6b9aa;   /* Coral Rose */
+--color-button-bg: #d6aaaa;   /* Coral Rose */
 --color-button-text: #ffffff;
---color-button-hover: #da9bbc;/* Deeper Coral */
+--color-button-hover: #b27e7b;/* Deeper Coral */
 
 
 
@@ -70,6 +71,13 @@ h1 {
 h2 {
   font-size: 2.2rem;
   font-weight: 600;
+}
+
+.font-signature {
+  font-family: CalifornianSignature, 'Playfair Display', serif;
+  line-height: 1.2;
+  font-weight: normal;
+  font-size: 2rem; /* Increased font size */
 }
 
 /* Paragraphs */

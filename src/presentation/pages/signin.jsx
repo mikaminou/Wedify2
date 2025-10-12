@@ -1,8 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SignIn = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-300 relative">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-pink-100 via-white to-purple-100 relative">
+      {/* Logo */}
+      <Link
+        to="/"
+        className="mb-16"
+      >
+        <h1 className="text-5xl font-serif font-bold">
+          Wedify
+        </h1>
+      </Link>
       {/* Glass Card */}
       <div className="w-full max-w-md bg-white/30 backdrop-blur-xl shadow-xl rounded-2xl p-8 border border-white/40">
         <h2 className="text-3xl font-bold text-center text-[var(--color-text)] mb-6">

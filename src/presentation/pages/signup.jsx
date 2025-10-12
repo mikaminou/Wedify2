@@ -1,8 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-100 via-white to-purple-100 relative">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-pink-100 via-white to-purple-100 relative">
+      {/* Logo */}
+      <Link
+        to="/"
+        className="mb-16"
+      >
+        <h1 className="text-5xl font-serif font-bold">
+          Wedify
+        </h1>
+      </Link>
       {/* Glass Card */}
       <div className="w-full max-w-md bg-white/60 backdrop-blur-xl shadow-xl rounded-2xl p-8 border border-white/40">
         <h2 className="text-3xl font-bold text-center text-[var(--color-text)] mb-6">
@@ -48,7 +58,10 @@ const SignUp = () => {
         </form>
         <p className="text-center text-gray-600 mt-6">
           Already have an account?{" "}
-          <a href="/signin" className="text-[var(--color-accent)] font-semibold hover:underline">
+          <a
+            href="/signin"
+            className="text-[var(--color-accent)] font-semibold hover:underline"
+          >
             Sign In
           </a>
         </p>
