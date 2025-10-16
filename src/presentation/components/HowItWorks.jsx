@@ -14,17 +14,17 @@ const HowItWorks = () => {
 
   const couplesSteps = [
     {
-      icon: <Heart className="w-10 h-10 text-pink-500" />,
+      icon: <Heart className="w-10 h-10 text-[var(--color-secondary)]" />,
       title: "Find Your Vendors",
       text: "Discover trusted professionals near you — from photographers to venues.",
     },
     {
-      icon: <MessageCircle className="w-10 h-10 text-pink-500" />,
+      icon: <MessageCircle className="w-10 h-10 text-[var(--color-secondary)]" />,
       title: "Chat & Plan",
       text: "Message vendors directly, discuss your vision, and make your dream come true.",
     },
     {
-      icon: <Calendar className="w-10 h-10 text-pink-500" />,
+      icon: <Calendar className="w-10 h-10 text-[var(--color-secondary)]" />,
       title: "Book & Relax",
       text: "Reserve your date online and enjoy stress-free planning.",
     },
@@ -32,17 +32,17 @@ const HowItWorks = () => {
 
   const vendorsSteps = [
     {
-      icon: <Briefcase className="w-10 h-10 text-purple-500" />,
+      icon: <Briefcase className="w-10 h-10 text-[var(--color-secondary)]" />,
       title: "Create Your Portfolio",
       text: "Showcase your work beautifully and attract ideal couples.",
     },
     {
-      icon: <Users className="w-10 h-10 text-purple-500" />,
+      icon: <Users className="w-10 h-10 text-[var(--color-secondary)]" />,
       title: "Get Real Bookings",
       text: "Receive confirmed reservations directly from couples.",
     },
     {
-      icon: <Star className="w-10 h-10 text-purple-500" />,
+      icon: <Star className="w-10 h-10 text-[var(--color-secondary)]" />,
       title: "Grow Your Business",
       text: "Build trust, gain exposure, and grow your brand on Wedify.",
     },
@@ -51,34 +51,47 @@ const HowItWorks = () => {
   const steps = view === "couples" ? couplesSteps : vendorsSteps;
 
   return (
-    <section className="relative py-24 px-6 md:px-16 bg-gradient-to-b from-white via-pink-50/50 to-purple-50/50 text-center overflow-hidden">
+    <section
+      className={`relative py-24 px-6 md:px-16 text-center overflow-hidden transition-colors duration-700 !mb-20 ${
+        view === "couples"
+          ? "bg-gradient-to-b from-[#fffaf6] to-[#fdf8f3]"
+          : "bg-gradient-to-b from-[#fdfcfb] to-[#f8f6f1]"
+      }`}
+    >
       {/* Title */}
       <div className="mb-16">
-        <h2 className="text-5xl md:text-6xl font-bold text-[var(--color-text)] mb-6">
+        <h2 className="text-5xl md:text-6xl font-bold text-[var(--color-text)] !mb-6">
           How It Works
         </h2>
 
         {/* Toggle Switch */}
-        <div className="relative inline-flex bg-white border border-[var(--color-accent)] rounded-full p-1 shadow-md">
+        <div className="relative inline-flex">
+          <motion.div
+            layout
+            transition={{ type: "spring", stiffness: 400, damping: 30 }}
+            className={`absolute top-1 left-1 h-[calc(100%-8px)] w-1/2 rounded-full bg-[var(--color-background)] ${
+              view === "vendors" ? "translate-x-full" : ""
+            }`}
+          />
           <button
             onClick={() => setView("couples")}
-            className={`px-6 py-2 rounded-full transition-all duration-300 ${
+            className={`relative z-10 w-40 py-2 !bg-[var(--color-secondary)] !rounded-full transition-colors duration-300 ${
               view === "couples"
-                ? "bg-[var(--color-accent)] text-white"
-                : "text-[var(--color-accent)]"
+                ? "text-white"
+                : "text-[var(--color-highlight)]"
             }`}
           >
-            For Couples 💍
+            For Couples
           </button>
           <button
             onClick={() => setView("vendors")}
-            className={`px-6 py-2 rounded-full transition-all duration-300 ${
+            className={`relative z-10 w-40 py-2 !bg-[var(--color-secondary)] !rounded-full transition-colors duration-300 ${
               view === "vendors"
-                ? "bg-[var(--color-accent)] text-white"
-                : "text-[var(--color-accent)]"
+                ? "text-white"
+                : "text-[var(--color-highlight)]"
             }`}
           >
-            For Vendors 💼
+            For Vendors
           </button>
         </div>
       </div>
@@ -89,11 +102,11 @@ const HowItWorks = () => {
           {steps.map((step, idx) => (
             <motion.div
               key={step.title}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -50 }}
+              exit={{ opacity: 0, y: -40 }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className={`p-10 rounded-3xl bg-white border border-transparent hover:border-[var(--color-accent)] transition-all duration-300`}
+              className="p-10 rounded-3xl bg-white border border-transparent hover:border-[var(--color-highlight)] hover:shadow-[0_0_20px_rgba(0,0,0,0.05)] transition-all duration-300"
             >
               <div className="flex justify-center mb-6">{step.icon}</div>
               <h3 className="text-2xl font-semibold text-[var(--color-text)] mb-3">
@@ -108,7 +121,7 @@ const HowItWorks = () => {
       </div>
 
       {/* Decorative glow */}
-      <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-pink-200/30 blur-[120px] rounded-full -translate-x-1/2 -translate-y-1/2 -z-10" />
+      <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-[var(--color-highlight)]/10 blur-[120px] rounded-full -translate-x-1/2 -translate-y-1/2 -z-10" />
     </section>
   );
 };

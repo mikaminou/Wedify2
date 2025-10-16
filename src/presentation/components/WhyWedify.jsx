@@ -40,7 +40,7 @@ const WhyWedify = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-5xl md:text-6xl font-bold text-[var(--color-text)] leading-tight mb-8">
-            More than a Platform,<br /> a <span className="text-[var(--color-accent)] font-signature"> love revolution</span>
+            More than a Platform,<br /> a <span className="text-[var(--color-primary)] font-signature"> love revolution</span>
           </h2>
           <p className="text-lg text-[var(--color-subtext)] mb-12">
             Wedify isn’t just about booking — it’s about creating lasting connections, simplifying planning, and celebrating Algerian love stories beautifully.
@@ -48,19 +48,19 @@ const WhyWedify = () => {
 
           <div className="grid grid-cols-2 gap-8">
             <div className="flex items-start gap-4">
-              <Heart className="text-[var(--color-accent)] w-7 h-7" />
+              <Heart className="text-[var(--color-primary)] w-7 h-7" />
               <p className="text-[var(--color-text)]">Built for couples in love</p>
             </div>
             <div className="flex items-start gap-4">
-              <Users className="text-[var(--color-accent)] w-7 h-7" />
+              <Users className="text-[var(--color-primary)] w-7 h-7" />
               <p className="text-[var(--color-text)]">Connecting thousands of vendors</p>
             </div>
             <div className="flex items-start gap-4">
-              <ShieldCheck className="text-[var(--color-accent)] w-7 h-7" />
+              <ShieldCheck className="text-[var(--color-primary)] w-7 h-7" />
               <p className="text-[var(--color-text)]">Secure & transparent</p>
             </div>
             <div className="flex items-start gap-4">
-              <Sparkles className="text-[var(--color-accent)] w-7 h-7" />
+              <Sparkles className="text-[var(--color-primary)] w-7 h-7" />
               <p className="text-[var(--color-text)]">Inspired by true love stories</p>
             </div>
           </div>

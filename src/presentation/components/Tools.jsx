@@ -12,37 +12,37 @@ const tools = [
     title: "Smart Venue Finder",
     description:
       "Discover the perfect wedding venue in any region of Algeria with ease and confidence.",
-    icon: <Search className="w-8 h-8 text-[var(--color-highlight)]" />,
+    icon: <Search className="w-8 h-8 text-[var(--color-background)]" />,
   },
   {
     title: "Personalized Checklist",
     description:
       "Plan your wedding step by step with a customized to-do list tailored to your style and preferences.",
-    icon: <CheckSquare className="w-8 h-8 text-[var(--color-highlight)]" />,
+    icon: <CheckSquare className="w-8 h-8 text-[var(--color-background)]" />,
   },
   {
     title: "Budget & Payment Tracker",
     description:
       "Keep track of all your bookings and payments in one place, staying stress-free and organized.",
-    icon: <PiggyBank className="w-8 h-8 text-[var(--color-highlight)]" />,
+    icon: <PiggyBank className="w-8 h-8 text-[var(--color-background)]" />,
   },
   {
     title: "Guest & RSVP Manager",
     description:
       "Easily manage your guest list, RSVPs, and communicate with your attendees effortlessly.",
-    icon: <Users className="w-8 h-8 text-[var(--color-highlight)]" />,
+    icon: <Users className="w-8 h-8 text-[var(--color-background)]" />,
   },
   {
     title: "Vendor Portfolios",
     description:
       "Explore detailed profiles of trusted vendors, view their work, and book directly online.",
-    icon: <Monitor className="w-8 h-8 text-[var(--color-highlight)]" />,
+    icon: <Monitor className="w-8 h-8 text-[var(--color-background)]" />,
   },
   {
     title: "Expert Recommendations",
     description:
       "Receive smart suggestions for vendors and services based on your preferences and wedding date.",
-    icon: <Bookmark className="w-8 h-8 text-[var(--color-highlight)]" />,
+    icon: <Bookmark className="w-8 h-8 text-[var(--color-background)]" />,
   },
 ];
 
