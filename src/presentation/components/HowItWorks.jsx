@@ -59,7 +59,7 @@ const HowItWorks = () => {
       }`}
     >
       {/* Title */}
-      <div className="mb-16">
+      <div className="mt-16 mb-16">
         <h2 className="text-5xl md:text-6xl font-bold text-[var(--color-text)] !mb-6">
           How It Works
         </h2>
