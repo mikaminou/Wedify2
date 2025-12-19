@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { supabase } from "../../lib/supabaseClient";
+
 
 const SignUp = () => {
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -12,6 +14,7 @@ const SignUp = () => {
     role: "couple",
   });
   const [loading, setLoading] = useState(false);
+
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
@@ -25,14 +28,41 @@ const SignUp = () => {
     if (formData.password !== formData.confirmPassword) {
       return setError("Passwords do not match.");
     }
-
     try {
       setLoading(true);
-      const response = await axios.post("http://localhost:8000/api/auth/signup", formData);
-      localStorage.setItem("token", response.data.token);
-      navigate("/signin");
+      // 1) Create the user in supabase auth
+      const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+        email: formData.email,
+        password: formData.password,
+      });
+
+      if (signUpError) {
+        setError(signUpError.message);
+        return;
+      }
+
+      // 2) Create a profile row in the "profiles" table
+      const {error: profileError } = await supabase
+        .from("profiles")
+        .insert([
+          {
+            id: signUpData.user.id, // use auth user id
+            email: formData.email,
+            name: formData.name,
+            role: formData.role, // "couple" or "vendor"
+          },
+        ]);
+
+      if (profileError) {
+        setError(profileError.message);
+        return;
+        }
+
+        alert("Sign up successful! Please check your email to confirm your account.");
+        navigate("/signin");
+
     } catch (err) {
-      setError(err.response?.data?.message || "Something went wrong.");
+      setError("Something went wrong.");
     } finally {
       setLoading(false);
     }
@@ -52,7 +82,7 @@ const SignUp = () => {
         </h2>
 
         {error && (
-          <p className="text-center text-red-500 bg-red-50 p-2 rounded mb-4">
+          <p className="text-center text-red-500 bg-red-200 p-2 mt-5 rounded mb-4">
             {error}
           </p>
         )}

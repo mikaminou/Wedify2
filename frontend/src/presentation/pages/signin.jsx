@@ -1,33 +1,28 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { supabase } from "../../lib/supabaseClient";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(""); // for error messages
-  const navigate = useNavigate(); // to redirect after login
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-  e.preventDefault(); // prevent page reload
-  setError(""); // clear previous errors
+    e.preventDefault();
+    setError("");
 
-  try {
-    const response = await fetch("http://localhost:5000/api/auth/signin", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-    const data = await response.json();
+      if (error) {
+        setError(error.message);
+        return;
+      }
 
-    if (!response.ok) {
-      setError(data.message || "Something went wrong");
-      return;
-    }
-
-    // Save token or user info in localStorage (or context)
-    localStorage.setItem("token", data.token);
-    localStorage.setItem("user", JSON.stringify(data.user));
 
     // Redirect to dashboard/home page
     navigate("/dashboard");
