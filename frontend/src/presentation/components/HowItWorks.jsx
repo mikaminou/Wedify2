@@ -64,36 +64,30 @@ const HowItWorks = () => {
           How It Works
         </h2>
 
-        {/* Toggle Switch */}
-        <div className="relative inline-flex">
-          <motion.div
-            layout
-            transition={{ type: "spring", stiffness: 400, damping: 30 }}
-            className={`absolute top-1 left-1 h-[calc(100%-8px)] w-1/2 rounded-full bg-[var(--color-background)] ${
-              view === "vendors" ? "translate-x-full" : ""
-            }`}
-          />
-          <button
-            onClick={() => setView("couples")}
-            className={`relative z-10 w-40 py-2 !bg-[var(--color-secondary)] !rounded-full transition-colors duration-300 ${
-              view === "couples"
-                ? "text-white"
-                : "text-[var(--color-highlight)]"
-            }`}
-          >
-            For Couples
-          </button>
-          <button
-            onClick={() => setView("vendors")}
-            className={`relative z-10 w-40 py-2 !bg-[var(--color-secondary)] !rounded-full transition-colors duration-300 ${
-              view === "vendors"
-                ? "text-white"
-                : "text-[var(--color-highlight)]"
-            }`}
-          >
-            For Vendors
-          </button>
-        </div>
+          {/* Toggle Switch */}
+          <div className="relative inline-flex gap-4">
+              <button
+                  onClick={() => setView("couples")}
+                  className={`relative z-10 min-w-[140px] px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                      view === "couples"
+                          ? "bg-[var(--color-secondary)] text-white shadow-lg"
+                          : "bg-transparent text-[var(--color-text)] hover:bg-[var(--color-secondary)]/10"
+                  }`}
+              >
+                  For Couples
+              </button>
+              <button
+                  onClick={() => setView("vendors")}
+                  className={`relative z-10 min-w-[140px] px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                      view === "vendors"
+                          ? "bg-[var(--color-secondary)] text-white shadow-lg"
+                          : "bg-transparent text-[var(--color-text)] hover:bg-[var(--color-secondary)]/10"
+                  }`}
+              >
+                  For Vendors
+              </button>
+          </div>
+
       </div>
 
       {/* Animated Cards */}
