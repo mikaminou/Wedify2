@@ -1,1 +1,0 @@
-//reads environment variables (Supabase URL, key, server port)

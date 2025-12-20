@@ -1,0 +1,54 @@
+openapi: 3.0.3
+info:
+  title: Wedify API
+  description: Backend API for Wedify wedding planning application
+  version: 0.0.1
+  contact:
+    name: Wedify Team
+
+servers:
+  - url: http://localhost:8081
+    description: Development server
+
+paths:
+  /health:
+    get:
+      tags:
+        - Health
+      summary: Health check endpoint
+      description: Returns the current health status of the API
+      operationId: getHealth
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      required:
+        - status
+        - version
+        - timestamp
+      properties:
+        status:
+          type: string
+          example: healthy
+        version:
+          type: string
+          example: 0.0.1
+        timestamp:
+          type: integer
+          format: int64
+          example: 1699900000000
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Supabase JWT token

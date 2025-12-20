@@ -1,1 +1,0 @@
-//simple CORS middleware so browser frontend can talk to API.

@@ -1,1 +1,0 @@
-//HTTP endpoints (signup, signin) — they accept request and call use cases.
