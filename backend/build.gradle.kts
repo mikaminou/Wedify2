@@ -1,7 +1,7 @@
 plugins {
-    kotlin("jvm") version "1.9.25"
-    kotlin("plugin.serialization") version "1.9.25"
-    id("io.ktor.plugin") version "2.3.12"
+    kotlin("jvm") version "2.2.0"
+    kotlin("plugin.serialization") version "2.2.0"
+    id("io.ktor.plugin") version "3.2.2"
 }
 
 group = "com.wedify"
@@ -19,6 +19,12 @@ repositories {
 }
 
 dependencies {
+    // Use Ktor BOM first to align all Ktor modules
+    implementation(platform(libs.ktor.bom))
+
+    // Use Supabase BOM to align Supabase SDK modules to 3.2.0
+    implementation(platform(libs.supabase.bom))
+
     // Ktor Server
     implementation(libs.ktor.server.core)
     implementation(libs.ktor.server.netty)
@@ -29,6 +35,7 @@ dependencies {
     implementation(libs.ktor.server.status.pages)
     implementation(libs.ktor.server.call.logging)
     implementation(libs.ktor.server.config.yaml)
+    implementation(libs.kotlinx.coroutines.core)
 
     // Serialization
     implementation(libs.ktor.serialization.kotlinx.json)
@@ -38,10 +45,9 @@ dependencies {
     implementation(libs.ktor.client.cio)
     implementation(libs.ktor.client.content.negotiation)
 
-    // Supabase Kotlin SDK
-    implementation(platform(libs.supabase.bom))
+    // Supabase Kotlin SDK (versions controlled by supabase BOM)
     implementation(libs.supabase.postgrest)
-    implementation(libs.supabase.gotrue)
+    implementation(libs.supabase.auth)
     implementation(libs.supabase.storage)
     implementation(libs.supabase.realtime)
 
@@ -54,9 +60,18 @@ dependencies {
 
     // OpenAPI & Swagger
     implementation(libs.ktor.server.openapi)
-
     // Testing
     testImplementation(libs.ktor.server.test.host)
     testImplementation(libs.kotlin.test.junit)
     testImplementation(libs.koin.test)
+}
+
+// Optional: force Ktor group artifacts to the katalog version if transitive libs pull different Ktor versions
+configurations.all {
+    resolutionStrategy.eachDependency {
+        if (requested.group == "io.ktor") {
+            useVersion(libs.versions.ktor.get())
+            because("Enforce Ktor ${libs.versions.ktor.get()} to match Supabase/Ktor BOM")
+        }
+    }
 }
