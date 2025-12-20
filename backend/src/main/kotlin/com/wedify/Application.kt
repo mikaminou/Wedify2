@@ -14,6 +14,7 @@ fun main(args: Array<String>) {
     EngineMain.main(args)
 }
 
+// Application module function called by Ktor from application.conf
 fun Application.module() {
     val appConfig = loadAppConfig()
 

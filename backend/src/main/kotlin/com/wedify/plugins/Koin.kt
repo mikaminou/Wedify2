@@ -1,6 +1,7 @@
 package com.wedify.plugins
 
 import com.wedify.config.AppConfig
+import com.wedify.domain.services.AuthService
 import com.wedify.infrastructure.supabase.SupabaseClientProvider
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
@@ -18,4 +19,5 @@ fun Application.configureKoin(appConfig: AppConfig) {
 fun appModule(appConfig: AppConfig) = module {
     single { appConfig }
     single { SupabaseClientProvider(get()) }
+    single { AuthService(get()) }
 }

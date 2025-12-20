@@ -1,10 +1,11 @@
 package com.wedify.plugins
 
+import com.wedify.api.routes.authRoutes
 import com.wedify.api.routes.healthRoutes
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
-import io.ktor.server.plugins.callloging.CallLogging
+import io.ktor.server.plugins.calllogging.CallLogging
 import io.ktor.server.plugins.statuspages.StatusPages
 import io.ktor.server.request.path
 import io.ktor.server.response.respond
@@ -31,6 +32,7 @@ fun Application.configureRouting() {
     routing {
         healthRoutes()
         route("/api/v1") {
+            authRoutes()
         }
     }
 }
