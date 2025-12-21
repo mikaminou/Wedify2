@@ -1,5 +1,7 @@
 package com.wedify.api.routes
 
+import com.wedify.api.dto.auth.LoginEmailRequest
+import com.wedify.api.dto.auth.LoginPhoneRequest
 import com.wedify.api.dto.auth.SignUpEmailRequest
 import com.wedify.api.dto.auth.SignUpPhoneRequest
 import com.wedify.domain.services.AuthService
@@ -23,6 +25,16 @@ fun Route.authRoutes() {
         post("/signup/phone") {
             val request = call.receive<SignUpPhoneRequest>()
             val response = authService.signUpWithPhone(request)
+            call.respond(response)
+        }
+        post("/login/phone") {
+            val request = call.receive<LoginPhoneRequest>()
+            val response = authService.loginWithPhone(request)
+            call.respond(response)
+        }
+        post("/login/email") {
+            val request = call.receive<LoginEmailRequest>()
+            val response = authService.loginWithEmail(request)
             call.respond(response)
         }
     }

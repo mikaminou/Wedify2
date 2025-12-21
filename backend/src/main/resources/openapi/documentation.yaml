@@ -150,6 +150,94 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AuthResponse'
+  /api/v1/auth/login/email:
+    post:
+      tags:
+        - Auth
+      summary: Login with email
+      description: Log in an existing user with email and password.
+      operationId: loginWithEmail
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginEmailRequest'
+            examples:
+              basic:
+                summary: Basic login
+                value:
+                  email: "user@example.com"
+                  password: "strongpassword"
+      responses:
+        '200':
+          description: Login result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+              examples:
+                success:
+                  summary: Logged in
+                  value:
+                    success: true
+                    user:
+                      id: "uuid"
+                      email: "user@example.com"
+                      phone: null
+                      createdAt: "2024-06-01T12:00:00Z"
+                      confirmedAt: "2024-06-01T12:01:00Z"
+                    message: "User logged in successfully"
+        '400':
+          description: Invalid credentials or input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+  /api/v1/auth/login/phone:
+    post:
+      tags:
+        - Auth
+      summary: Login with phone
+      description: Log in an existing user with phone and password.
+      operationId: loginWithPhone
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginPhoneRequest'
+            examples:
+              basic:
+                summary: Basic phone login
+                value:
+                  phone: "+49123456789"
+                  password: "strongpassword"
+      responses:
+        '200':
+          description: Login result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+              examples:
+                success:
+                  summary: Logged in
+                  value:
+                    success: true
+                    user:
+                      id: "uuid"
+                      email: null
+                      phone: "+49123456789"
+                      createdAt: "2024-06-01T12:00:00Z"
+                      confirmedAt: "2024-06-01T12:01:00Z"
+                    message: "User logged in successfully"
+        '400':
+          description: Invalid credentials or input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
 components:
   schemas:
     HealthResponse:
@@ -204,6 +292,29 @@ components:
           type: string
           enum: [SMS, WHATSAPP]
           default: SMS
+    LoginEmailRequest:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+    LoginPhoneRequest:
+      type: object
+      required:
+        - phone
+        - password
+      properties:
+        phone:
+          type: string
+        password:
+          type: string
+          format: password
     AuthUserInfo:
       type: object
       required:
