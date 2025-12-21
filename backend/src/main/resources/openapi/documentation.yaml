@@ -238,6 +238,88 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AuthResponse'
+  /api/v1/auth/forgot-password:
+    post:
+      tags:
+        - Auth
+      summary: Send password reset email
+      description: Sends a password reset email to the provided address. Optionally include a redirect URL.
+      operationId: forgotPassword
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForgotPasswordRequest'
+            examples:
+              basic:
+                summary: Basic forgot password
+                value:
+                  email: "user@example.com"
+                  redirectUrl: "https://app.example.com/reset"
+      responses:
+        '200':
+          description: Password reset email queued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+              examples:
+                sent:
+                  summary: Reset email sent
+                  value:
+                    success: true
+                    message: "Password reset email sent"
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+  /api/v1/auth/update-password:
+    patch:
+      tags:
+        - Auth
+      summary: Update password for authenticated user
+      description: Update the current user's password. Requires authentication.
+      operationId: updatePassword
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePasswordRequest'
+            examples:
+              basic:
+                summary: Update password
+                value:
+                  newPassword: "newStrongPassword123"
+      responses:
+        '200':
+          description: Password updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+              examples:
+                success:
+                  summary: Password updated
+                  value:
+                    success: true
+                    user:
+                      id: "uuid"
+                      email: "user@example.com"
+                      phone: null
+                      createdAt: "2024-06-01T12:00:00Z"
+                      confirmedAt: "2024-06-01T12:01:00Z"
+                    message: "Password updated successfully"
+        '400':
+          description: Invalid input or unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+
 components:
   schemas:
     HealthResponse:
@@ -313,6 +395,26 @@ components:
         phone:
           type: string
         password:
+          type: string
+          format: password
+    ForgotPasswordRequest:
+      type: object
+      required:
+        - email
+      properties:
+        email:
+          type: string
+          format: email
+        redirectUrl:
+          type: string
+          format: uri
+          nullable: true
+    UpdatePasswordRequest:
+      type: object
+      required:
+        - newPassword
+      properties:
+        newPassword:
           type: string
           format: password
     AuthUserInfo:

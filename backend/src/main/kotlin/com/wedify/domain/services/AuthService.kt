@@ -1,11 +1,13 @@
 package com.wedify.domain.services
 
 import com.wedify.api.dto.auth.AuthResponse
+import com.wedify.api.dto.auth.ForgotPasswordRequest
 import com.wedify.api.dto.auth.LoginEmailRequest
 import com.wedify.api.dto.auth.LoginPhoneRequest
 import com.wedify.api.dto.auth.PhoneChannel
 import com.wedify.api.dto.auth.SignUpEmailRequest
 import com.wedify.api.dto.auth.SignUpPhoneRequest
+import com.wedify.api.dto.auth.UpdatePasswordRequest
 import com.wedify.domain.mappers.toAuthUserInfo
 import com.wedify.infrastructure.supabase.SupabaseClientProvider
 import io.github.jan.supabase.auth.Auth
@@ -74,6 +76,30 @@ class AuthService(
                 phone = request.phone
                 password = request.password
             }
+        }
+    }
+
+    suspend fun forgotPassword(request: ForgotPasswordRequest): AuthResponse {
+        return try {
+            auth.resetPasswordForEmail(email = request.email, redirectUrl = request.redirectUrl)
+            AuthResponse(success = true, message = "Password reset email sent")
+        } catch (e: Exception) {
+            AuthResponse(success = false, error = e.message)
+        }
+    }
+
+    suspend fun updatePassword(request: UpdatePasswordRequest): AuthResponse {
+        return try {
+            val user = auth.updateUser {
+                password = request.newPassword
+            }
+            AuthResponse(
+                success = true,
+                user = user.toAuthUserInfo(),
+                message = "Password updated successfully"
+            )
+        } catch (e: Exception) {
+            AuthResponse(success = false, error = e.message)
         }
     }
 
