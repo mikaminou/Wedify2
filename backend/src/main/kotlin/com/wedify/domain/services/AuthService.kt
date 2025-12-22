@@ -18,7 +18,7 @@ import io.github.jan.supabase.auth.status.SessionStatus
 import org.slf4j.LoggerFactory
 
 class AuthService(
-    private val supabaseClientProvider: SupabaseClientProvider
+    private val supabaseClientProvider: SupabaseClientProvider,
 ) {
     private val auth: Auth
         get() = supabaseClientProvider.client.auth
