@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 data class VendorRegions(
     val vendorId: String,
     val regionName: String,
-    val id: String?,
+    val id: String? = null,
 )

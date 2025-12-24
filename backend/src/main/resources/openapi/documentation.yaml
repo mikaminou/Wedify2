@@ -343,7 +343,7 @@ paths:
                     description: "A test business"
                   regions:
                     - vendorId: "test-vendor-123"
-                      regionName: "Berlin"
+                      regionName: "Adrar"
                   packages:
                     - vendorId: "test-vendor-123"
                       packageName: "Standard"

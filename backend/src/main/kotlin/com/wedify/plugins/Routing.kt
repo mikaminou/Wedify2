@@ -2,6 +2,7 @@ package com.wedify.plugins
 
 import com.wedify.auth.api.routes.authRoutes
 import com.wedify.health.routes.healthRoutes
+import com.wedify.vendors.api.vendorsRoutes
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
@@ -33,6 +34,7 @@ fun Application.configureRouting() {
         healthRoutes()
         route("/api/v1") {
             authRoutes()
+            vendorsRoutes()
         }
     }
 }

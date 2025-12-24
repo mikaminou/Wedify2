@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 data class VendorsRestDays(
     val vendorId: String,
     val dayOfWeek: String,
-    val id: String?,
+    val id: String? = null,
 )

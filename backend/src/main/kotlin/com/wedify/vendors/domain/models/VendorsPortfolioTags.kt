@@ -7,5 +7,5 @@ data class VendorsPortfolioTags(
     val vendorId: String,
     val taggedVendorId: String,
     val fileId: String,
-    val id: String?,
+    val id: String? = null,
 )
