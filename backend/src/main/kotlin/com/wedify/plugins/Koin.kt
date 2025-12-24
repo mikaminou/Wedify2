@@ -1,8 +1,8 @@
 package com.wedify.plugins
 
 import com.wedify.config.AppConfig
-import com.wedify.domain.services.AuthService
-import com.wedify.infrastructure.supabase.SupabaseClientProvider
+import com.wedify.auth.infrastructure.AuthService
+import com.wedify.config.supabase.SupabaseClientProvider
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
 import org.koin.dsl.module

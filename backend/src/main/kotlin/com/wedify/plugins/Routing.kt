@@ -1,7 +1,7 @@
 package com.wedify.plugins
 
-import com.wedify.api.routes.authRoutes
-import com.wedify.api.routes.healthRoutes
+import com.wedify.auth.api.routes.authRoutes
+import com.wedify.health.routes.healthRoutes
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
