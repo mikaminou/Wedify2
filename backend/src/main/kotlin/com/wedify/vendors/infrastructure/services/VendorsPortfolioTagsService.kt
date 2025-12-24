@@ -23,6 +23,13 @@ class VendorsPortfolioTagsService(
         }.decodeSingle<VendorsPortfolioTags>()
     }
 
+    override suspend fun tagVendorPortfoliosBatch(tags: List<VendorsPortfolioTags>): List<VendorsPortfolioTags> {
+        logger.info("Tagging vendor portfolios batch of size: ${tags.size}")
+        return client.from("vendors_portfolio_tags").insert(tags) {
+            select()
+        }.decodeList<VendorsPortfolioTags>()
+    }
+
     override suspend fun untagVendorPortfolio(tagId: String): VendorsPortfolioTags? {
         logger.info("Untagging vendor portfolio tagId: $tagId")
         return client.from("vendors_portfolio_tags").delete {

@@ -41,12 +41,10 @@ class VendorsService(
         }
     }
 
-    override suspend fun deleteVendor(vendor: Vendors): Vendors {
-        logger.info("Deleting vendor $vendor")
+    override suspend fun deleteVendor(vendorId: String): Vendors {
+        logger.info("Deleting vendor with id=$vendorId")
 
         return try {
-            val vendorId = vendor.id ?: throw IllegalArgumentException("Vendor ID cannot be null for delete operation")
-
             val deleted = client.from("vendors").delete {
                 select()
                 filter {
@@ -56,10 +54,11 @@ class VendorsService(
 
             deleted ?: throw NoSuchElementException("Vendor with id=$vendorId not found")
         } catch (e: Exception) {
-            logger.error("Error deleting vendor: $vendor", e)
+            logger.error("Error deleting vendor with id=$vendorId", e)
             throw RuntimeException(e.message ?: "Internal server error", e)
         }
     }
+
 
     override suspend fun getVendor(vendorId: String): Vendors? {
         logger.info("Fetching vendor for id={}", vendorId)
@@ -67,6 +66,17 @@ class VendorsService(
             .select {
                 filter {
                     eq("id", vendorId)
+                }
+            }
+            .decodeSingleOrNull<Vendors>()
+    }
+
+    suspend fun getVendorByUserIdAndBusinessName(userId: String, businessName: String): Vendors? {
+        return client.from("vendors")
+            .select {
+                filter {
+                    eq("user_id", userId)
+                    eq("business_name", businessName)
                 }
             }
             .decodeSingleOrNull<Vendors>()

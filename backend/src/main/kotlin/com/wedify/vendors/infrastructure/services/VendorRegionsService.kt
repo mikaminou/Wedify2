@@ -23,6 +23,13 @@ class VendorRegionsService(
         }.decodeSingle<VendorRegions>()
     }
 
+    override suspend fun addVendorRegionsBatch(vendorRegions: List<VendorRegions>): List<VendorRegions> {
+        logger.info("Adding batch of vendor regions: $vendorRegions")
+        return client.from("vendor_regions").insert(vendorRegions) {
+            select()
+        }.decodeList<VendorRegions>()
+    }
+
     override suspend fun removeVendorRegion(vendorRegionId: String): VendorRegions? {
         logger.info("Removing vendor region: $vendorRegionId")
         return client.from("vendor_regions").delete {

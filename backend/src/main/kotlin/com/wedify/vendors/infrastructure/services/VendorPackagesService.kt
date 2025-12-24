@@ -23,6 +23,13 @@ class VendorPackagesService(
         }.decodeSingle<VendorPackages>()
     }
 
+    override suspend fun createVendorPackagesBatch(packs: List<VendorPackages>): List<VendorPackages> {
+        logger.info("Creating vendor packages batch of size: ${packs.size}")
+        return client.from("vendor_packages").insert(packs) {
+            select()
+        }.decodeList<VendorPackages>()
+    }
+
     override suspend fun deleteVendorPackage(vendorPackageId: String): VendorPackages? {
         logger.info("Deleting vendor package: $vendorPackageId")
         return client.from("cities").delete {

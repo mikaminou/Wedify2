@@ -14,9 +14,9 @@ class SupabaseClientProvider(private val config: AppConfig) {
             supabaseUrl = config.supabase.url,
             supabaseKey = config.supabase.anonKey
         ) {
-            install(Postgrest.Companion)
-            install(Storage.Companion)
-            install(Auth.Companion)
+            install(Postgrest)
+            install(Storage)
+            install(Auth)
         }
     }
 }

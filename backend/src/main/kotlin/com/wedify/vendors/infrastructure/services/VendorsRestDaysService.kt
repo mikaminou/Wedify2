@@ -23,6 +23,13 @@ class VendorsRestDaysService(
         }.decodeSingle<VendorsRestDays>()
     }
 
+    override suspend fun createVendorRestDaysBatch(vendorRestDays: List<VendorsRestDays>): List<VendorsRestDays> {
+        logger.info("Creating vendor rest days batch for ${vendorRestDays.size} entries")
+        return client.from("vendors_rest_days").insert(vendorRestDays) {
+            select()
+        }.decodeList<VendorsRestDays>()
+    }
+
     override suspend fun removeVendorRestDay(vendorRestDayId: String): VendorsRestDays? {
         logger.info("Removing vendor rest day with id: $vendorRestDayId")
         return client.from("vendors_rest_days").delete {

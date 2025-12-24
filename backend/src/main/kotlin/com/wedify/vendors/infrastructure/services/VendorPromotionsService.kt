@@ -21,6 +21,13 @@ class VendorPromotionsService(
         }.decodeSingle<VendorPromotions>()
     }
 
+    override suspend fun createVendorPromotionsBatch(promotions: List<VendorPromotions>): List<VendorPromotions> {
+        logger.info("Creating vendor promotions batch: $promotions")
+        return client.from("vendor_promotions").insert(promotions) {
+            select()
+        }.decodeList<VendorPromotions>()
+    }
+
     override suspend fun updateVendorPromotion(
         promotionId: String,
         promotion: VendorPromotions

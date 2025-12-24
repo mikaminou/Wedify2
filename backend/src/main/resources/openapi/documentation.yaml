@@ -319,6 +319,68 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AuthResponse'
+  /api/v1/vendors/businesses:
+    post:
+      tags:
+        - Vendors
+      summary: Create a new business
+      description: Creates a new vendor business with regions, packages, promotions, rest days, and portfolio tags.
+      operationId: createBusiness
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BusinessDataRequest'
+      responses:
+        '201':
+          description: Business created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+              examples:
+                created:
+                  summary: Business created
+                  value:
+                    statusCode: 201
+                    message: Business created successfully
+        '400':
+          description: Invalid business data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+              examples:
+                invalid:
+                  summary: Invalid data
+                  value:
+                    statusCode: 400
+                    message: Invalid business data
+        '409':
+          description: Business already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+              examples:
+                conflict:
+                  summary: Conflict
+                  value:
+                    statusCode: 409
+                    message: Business already exists
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+              examples:
+                error:
+                  summary: Error
+                  value:
+                    statusCode: 500
+                    message: Internal server error
 
 components:
   schemas:
@@ -452,6 +514,194 @@ components:
           type: string
           nullable: true
         error:
+          type: string
+          nullable: true
+    BusinessDataRequest:
+      type: object
+      required:
+        - basicInfo
+        - regions
+        - packages
+        - promotions
+        - restDays
+      properties:
+        basicInfo:
+          $ref: '#/components/schemas/Vendors'
+        regions:
+          type: array
+          items:
+            $ref: '#/components/schemas/VendorRegions'
+        packages:
+          type: array
+          items:
+            $ref: '#/components/schemas/VendorPackages'
+        promotions:
+          type: array
+          items:
+            $ref: '#/components/schemas/VendorPromotions'
+        restDays:
+          type: array
+          items:
+            $ref: '#/components/schemas/VendorsRestDays'
+        portfolioTags:
+          type: array
+          items:
+            $ref: '#/components/schemas/VendorsPortfolioTags'
+          nullable: true
+    ApiResponse:
+      type: object
+      required:
+        - statusCode
+        - message
+      properties:
+        statusCode:
+          type: integer
+        message:
+          type: string
+    Vendors:
+      type: object
+      required:
+        - userId
+        - serviceTypeId
+        - businessName
+      properties:
+        userId:
+          type: string
+        serviceTypeId:
+          type: string
+        businessName:
+          type: string
+        description:
+          type: string
+          nullable: true
+        rating:
+          type: number
+          format: float
+          nullable: true
+        reviewCount:
+          type: integer
+          nullable: true
+        id:
+          type: string
+          nullable: true
+          description: Vendor unique identifier (nullable, assigned by backend)
+    VendorRegions:
+      type: object
+      required:
+        - vendorId
+        - regionName
+      properties:
+        vendorId:
+          type: string
+        regionName:
+          type: string
+        id:
+          type: string
+          nullable: true
+    VendorPackages:
+      type: object
+      required:
+        - vendorId
+        - packageName
+        - price
+        - features
+      properties:
+        vendorId:
+          type: string
+        packageName:
+          type: string
+        price:
+          type: number
+          format: double
+        features:
+          type: array
+          items:
+            type: string
+        description:
+          type: string
+          nullable: true
+        isDailyBooking:
+          type: boolean
+          nullable: true
+        hourRange:
+          type: integer
+          nullable: true
+        hasMultipleBookings:
+          type: boolean
+          nullable: true
+        id:
+          type: string
+          nullable: true
+    VendorPromotions:
+      type: object
+      required:
+        - vendorId
+        - name
+        - originalPrice
+        - discountPrice
+        - startDate
+        - endDate
+      properties:
+        vendorId:
+          type: string
+        name:
+          type: string
+        originalPrice:
+          type: number
+          format: double
+        discountPrice:
+          type: number
+          format: double
+        startDate:
+          type: string
+        endDate:
+          type: string
+        id:
+          type: string
+          nullable: true
+        packageId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        benefits:
+          type: array
+          items:
+            type: string
+          nullable: true
+        features:
+          type: array
+          items:
+            type: string
+          nullable: true
+    VendorsRestDays:
+      type: object
+      required:
+        - vendorId
+        - dayOfWeek
+      properties:
+        vendorId:
+          type: string
+        dayOfWeek:
+          type: string
+        id:
+          type: string
+          nullable: true
+    VendorsPortfolioTags:
+      type: object
+      required:
+        - vendorId
+        - taggedVendorId
+        - fileId
+      properties:
+        vendorId:
+          type: string
+        taggedVendorId:
+          type: string
+        fileId:
+          type: string
+        id:
           type: string
           nullable: true
 
