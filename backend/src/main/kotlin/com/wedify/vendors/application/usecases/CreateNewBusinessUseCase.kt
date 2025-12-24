@@ -5,7 +5,7 @@ import com.wedify.vendors.application.validation.validateBusinessDataRequest
 import com.wedify.vendors.domain.interfaces.BusinessesOperations
 import com.wedify.vendors.domain.schemas.BusinessDataRequest
 
-class CreateNewBusinessUsecase(
+class CreateNewBusinessUseCase(
     val businessesOperations: BusinessesOperations
 ) {
     suspend operator fun invoke(data: BusinessDataRequest): ApiResponse {

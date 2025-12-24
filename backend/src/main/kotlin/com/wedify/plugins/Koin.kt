@@ -3,7 +3,8 @@ package com.wedify.plugins
 import com.wedify.config.AppConfig
 import com.wedify.auth.infrastructure.AuthService
 import com.wedify.config.supabase.SupabaseClientProvider
-import com.wedify.vendors.application.usecases.CreateNewBusinessUsecase
+import com.wedify.vendors.application.usecases.CreateNewBusinessUseCase
+import com.wedify.vendors.application.usecases.RolloutBusinessUseCase
 import com.wedify.vendors.domain.interfaces.BusinessesOperations
 import com.wedify.vendors.infrastructure.services.BusinessesService
 import com.wedify.vendors.infrastructure.services.VendorPackagesService
@@ -44,5 +45,6 @@ fun appModule(appConfig: AppConfig) = module {
         get()
     ) }
     single<BusinessesOperations> { get<BusinessesService>() }
-    single { CreateNewBusinessUsecase(businessesOperations = get()) }
+    single { CreateNewBusinessUseCase(businessesOperations = get()) }
+    single { RolloutBusinessUseCase(businessesOperations = get()) }
 }

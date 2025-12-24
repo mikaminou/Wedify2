@@ -332,6 +332,37 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/BusinessDataRequest'
+            examples:
+              createExample:
+                summary: Create business
+                value:
+                  basicInfo:
+                    userId: "user-001"
+                    serviceTypeId: "service-001"
+                    businessName: "Test Business"
+                    description: "A test business"
+                  regions:
+                    - vendorId: "test-vendor-123"
+                      regionName: "Berlin"
+                  packages:
+                    - vendorId: "test-vendor-123"
+                      packageName: "Standard"
+                      price: 1000.0
+                      features: ["Photography", "Video"]
+                  promotions:
+                    - vendorId: "test-vendor-123"
+                      name: "Summer Sale"
+                      originalPrice: 1200.0
+                      discountPrice: 1000.0
+                      startDate: "2024-07-01"
+                      endDate: "2024-07-31"
+                  restDays:
+                    - vendorId: "test-vendor-123"
+                      dayOfWeek: "SUNDAY"
+                  portfolioTags:
+                    - vendorId: "test-vendor-123"
+                      taggedVendorId: "tagged-001"
+                      fileId: "file-001"
       responses:
         '201':
           description: Business created successfully
@@ -345,6 +376,7 @@ paths:
                   value:
                     statusCode: 201
                     message: Business created successfully
+                    id: "test-vendor-123"
         '400':
           description: Invalid business data
           content:
@@ -369,6 +401,70 @@ paths:
                   value:
                     statusCode: 409
                     message: Business already exists
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+              examples:
+                error:
+                  summary: Error
+                  value:
+                    statusCode: 500
+                    message: Internal server error
+  /api/v1/vendors/businesses/{id}:
+    delete:
+      tags:
+        - Vendors
+      summary: Delete (roll out) a business
+      description: Deletes (rolls out) a vendor business and all related data. Returns 404 if the business does not exist.
+      operationId: deleteBusiness
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Vendor business unique identifier
+      responses:
+        '200':
+          description: Business deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+              examples:
+                deleted:
+                  summary: Business deleted
+                  value:
+                    statusCode: 200
+                    message: Business rollout successful
+                    id: "test-vendor-123"
+        '400':
+          description: Missing or malformed id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+              examples:
+                missing:
+                  summary: Missing or malformed id
+                  value:
+                    statusCode: 400
+                    message: Missing or malformed id
+        '404':
+          description: Business not found or rollout failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+              examples:
+                notFound:
+                  summary: Not found
+                  value:
+                    statusCode: 404
+                    message: Business not found or rollout failed
         '500':
           description: Internal server error
           content:

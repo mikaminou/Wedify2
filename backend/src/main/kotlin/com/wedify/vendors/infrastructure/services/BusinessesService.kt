@@ -45,8 +45,13 @@ class BusinessesService(
         }
     }
 
-    override suspend fun rolloutBusiness(vendorId: String) {
+    override suspend fun rolloutBusiness(vendorId: String): Boolean {
         logger.info("Rolling out business with ID: $vendorId")
+        val vendor = vendorsService.getVendor(vendorId)
+        if (vendor == null) {
+            logger.warn("Vendor with ID: $vendorId not found")
+            return false
+        }
         logger.info("Step1: Rolling out vendor rest days for business ID: $vendorId")
         vendorsRestDaysService.removeVendorRestDays(vendorId)
         logger.info("Step2: Rolling out vendor promotions for business ID: $vendorId")
@@ -60,6 +65,7 @@ class BusinessesService(
         logger.info("Step6: Rolling out vendor for business ID: $vendorId")
         vendorsPortfolioTagsService.deleteTagsForVendor(vendorId)
         logger.info("Business with ID: $vendorId rolled out successfully")
+        return true
     }
 
     override suspend fun exists(businessData: BusinessDataRequest): Boolean {
